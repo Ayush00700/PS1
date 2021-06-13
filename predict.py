@@ -1,5 +1,6 @@
 import numpy as np
 from L_model_forward import L_model_forward
+import csv
 
 
 def predict(X, y, parameters):
@@ -30,7 +31,19 @@ def predict(X, y, parameters):
 
     # print results
     print("predictions: " + str(p))
+    # p.forEach(e= > console.log(e))
+    # y.forEach(e= > console.log(e))
+
     print("true labels: " + str(y))
     print("Accuracy: " + str(np.sum((p == y)/m)))
+    filename = "Predictions.csv"
+    with open(filename, 'w') as csvfile:
+        # creating a csv writer object
+        csvwriter = csv.writer(csvfile)
 
+        # writing the fields
+        csvwriter.writerow(p)
+
+        # writing the data rows
+        csvwriter.writerows(y)
     return p
