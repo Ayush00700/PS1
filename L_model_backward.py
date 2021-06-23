@@ -64,6 +64,13 @@ def linear_activation_backward(dA, cache, activation):
         dZ = sigmoid_backward(dA, activation_cache)
         dA_prev, dW, db = linear_backward(dZ, linear_cache)
 
+    elif activation == "tanh":
+        # (≈ 2 lines of code)
+        # dZ =  ...
+        # dA_prev, dW, db =  ...
+        # YOUR CODE STARTS HERE
+        dZ = sigmoid_backward(dA, activation_cache)
+        dA_prev, dW, db = linear_backward(dZ, linear_cache)
         # YOUR CODE ENDS HERE
 
     return dA_prev, dW, db
@@ -109,7 +116,7 @@ def L_model_backward(AL, Y, caches):
     # YOUR CODE STARTS HERE
     current_cache = caches[L-1]
     dA_prev_temp, dW_temp, db_temp = linear_activation_backward(
-        dAL, current_cache, "sigmoid")
+        dAL, current_cache, "tanh")
     grads["dA" + str(L-1)] = dA_prev_temp
     grads["dW" + str(L)] = dW_temp
     grads["db" + str(L)] = db_temp

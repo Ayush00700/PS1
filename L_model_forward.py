@@ -63,6 +63,13 @@ def linear_activation_forward(A_prev, W, b, activation):
         A, activation_cache = relu(Z)
 
         # YOUR CODE ENDS HERE
+    elif activation == "tanh":
+        # (≈ 2 lines of code)
+        # Z, linear_cache = ...
+        # A, activation_cache = ...
+        # YOUR CODE STARTS HERE
+        Z, linear_cache = linear_forward(A_prev, W, b)
+        A, activation_cache = sigmoid(Z)
     cache = (linear_cache, activation_cache)
 
     return A, cache
@@ -106,7 +113,7 @@ def L_model_forward(X, parameters):
     # caches ...
     # YOUR CODE STARTS HERE
     AL, cache = linear_activation_forward(
-        A, parameters["W"+str(L)], parameters["b"+str(L)], "sigmoid")
+        A, parameters["W"+str(L)], parameters["b"+str(L)], "tanh")
     caches.append(cache)
 
     # YOUR CODE ENDS HERE

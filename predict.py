@@ -31,12 +31,16 @@ def predict(X, y, parameters):
 
     # print results
     print("predictions: " + str(p))
-    # p.forEach(e= > console.log(e))
-    # y.forEach(e= > console.log(e))
 
     print("true labels: " + str(y))
     print("Accuracy: " + str(np.sum((p == y)/m)))
     filename = "Predictions.csv"
+    count = 0
+    print("Shape of predictions".format(p.shape))
+    for i in range(p.shape[1]):
+        if(p[0, i] == 0):
+            count += 1
+    print("Count of 0's in predictions {}".format(count))
     with open(filename, 'w') as csvfile:
         # creating a csv writer object
         csvwriter = csv.writer(csvfile)
